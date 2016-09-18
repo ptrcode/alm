@@ -1,0 +1,14 @@
+crucible:
+  image: ptrsoft/atlassian-crucible
+  restart: always
+  links:
+    - database
+  volumes:
+    - ./instance:/opt/instance
+database:
+  image: postgres:9.4
+  restart: always
+  volumes:
+    - ./data:/var/lib/postgresql/data
+    - ./setup-crucible-db.sh:/docker-entrypoint-initdb.d/setup-crucible-db.sh
+

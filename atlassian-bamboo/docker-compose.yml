@@ -1,0 +1,17 @@
+bamboo:
+  image: ptrsoft/atlassian-bamboo
+  restart: always
+  links:
+    - database
+  volumes:
+    - ./home:/opt/home
+    - ./war:/opt/war
+    - ./tomcat:/opt/tomcat
+
+database:
+  image: postgres:9.4
+  restart: always
+  volumes:
+    - ./data:/var/lib/postgresql/data
+    - ./setup-bamboo-db.sh:/docker-entrypoint-initdb.d/setup-bamboo-db.sh
+    - ./tmp:/tmp/dumps # import backups

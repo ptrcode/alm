@@ -1,0 +1,6 @@
+nexus:
+  image: ptrsoft/nexus
+  restart: always
+  volumes:
+    - ./nexus-data:/nexus-data
+
